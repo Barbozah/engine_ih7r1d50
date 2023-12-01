@@ -1,16 +1,18 @@
-from core import io
+from core.io import load_objects_byu
 from core.engine import Camera
-import numpy as np
+from graphics.tk import PixelDrawer
 
-objects = list(io.load_objects_byu('assets/objects/triangulo.byu'))
+objects = list(load_objects_byu('assets/objects/vaso.byu'))
 
 camera = Camera(
-  hx=1,
-  hy=1,
-  d=1,
-  c=[1, 1, 2],
-  n=[-1, -1, -1],
-  v=[0, 0, 1]
+  hx=2,
+  hy=2,
+  d=5,
+  c=[0, -500, 500],
+  n=[0, 1, -1],
+  v=[0, -1, -1]
 )
 
-print(camera.change_base(np.array([1, -3, -5])))
+screen = PixelDrawer(800, 600)
+screen.draw_line(0, 0, 800, 600)
+screen.run()
