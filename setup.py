@@ -1,6 +1,8 @@
 import gdown
 import zipfile
+import os
 
+os.mkdir('./assets')
 url = 'https://drive.google.com/uc?id=1RtMSVh_KMv3pOHVs2qIAjCG9TggQaJnd'
 output = './assets/objects.zip'
 gdown.download(url, output, quiet=False)
