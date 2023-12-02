@@ -1,5 +1,15 @@
 import numpy as np
 
+def normalize(v):
+  return v / np.linalg.norm(v)
+
+def equation(v1, v2):
+  if v1[1] == v2[1]:
+    return lambda _: v1[0]
+  a = (v1 - v2)[0]/(v1 - v2)[1]
+  b = v1[0] - a*v1[1]
+  return lambda x: a*x + b
+
 class Camera:
   def __init__(self, hx, hy, d, c, n, v):
     self.h = np.array([hx, hy])
@@ -11,11 +21,8 @@ class Camera:
     self.v_ = self.v - np.dot(self.v, self.n) / np.dot(self.n, self.n) * self.n
     self.u = np.cross(self.n, self.v_)
     self._base = np.array([
-      self.normalize(self.u), self.normalize(self.v_), self.normalize(self.n)
+      normalize(self.u), normalize(self.v_), normalize(self.n)
     ])
-
-  def normalize(self, v):
-    return v / np.linalg.norm(v)
 
   def change_base(self, v):
     return np.dot(self._base, v - self.c)

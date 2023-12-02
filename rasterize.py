@@ -1,8 +1,5 @@
-from core.io import load_objects_byu
 from core.engine import Camera
 from graphics.tk import PixelDrawer
-
-objects = list(load_objects_byu('assets/objects/vaso.byu'))
 
 camera = Camera(
   hx=2,
@@ -14,5 +11,4 @@ camera = Camera(
 )
 
 screen = PixelDrawer(800, 600)
-screen.draw_line(0, 0, 800, 600)
-screen.run()
+screen.run(camera, rasterize=True)
