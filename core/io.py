@@ -1,4 +1,5 @@
-from core.engine import Object3D, Vertice3D
+from core.engine import Object3D
+import numpy as np
 
 def load_objects_byu(path):
   with open(path) as fin:
@@ -20,6 +21,6 @@ def load_objects_byu(path):
           objects[-1]['triangles'].append(list(map(int, line)))
     for o in objects:
       yield Object3D(
-        list(map(Vertice3D, o['vertices'])),
+        list(map(np.array, o['vertices'])),
         o['triangles']
       )
